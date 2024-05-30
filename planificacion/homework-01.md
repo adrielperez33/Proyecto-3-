@@ -34,80 +34,80 @@
 •	Permitir al usuario subir una foto de perfil a su cuenta.
 •	Soportar archivos de imagen en formatos .jpg, .png, etc.
 ##                                               Tecnologías y Herramientas
-•	FrontEnd: React.js, HTML5, CSS3
-•	BackEnd: Node.js, Express.js, TypeScript, JavaScript
-•	Base de Datos: SQL (TypeORM)
+-	FrontEnd: React.js, HTML5, CSS3
+-	BackEnd: Node.js, Express.js, TypeScript, JavaScript
+-	Base de Datos: SQL (TypeORM)
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-<!-- 1. Registro y Autenticación de Usuario -->
-•	Como usuario
-•	Quiero registrarme en la aplicación proporcionando mis datos básicos (nombre, correo electrónico, contraseña)
-•	Para poder autenticarme y acceder a las funciones de agendamiento de turnos.
-<!-- 2. Iniciar Sesión -->
-•	Como usuario registrado
-•	Quiero iniciar sesión con mi correo electrónico y contraseña
-•	Para acceder a mi cuenta y gestionar mis turnos.
-<!-- 3. Recuperación de Contraseña --> (extra)
-•	Como usuario registrado
-•	Quiero recuperar mi contraseña en caso de haberla olvidado
-•	Para poder acceder nuevamente a mi cuenta.
-<!-- 4. Agendar un Turno -->
-•	Como usuario autenticado
-•	Quiero seleccionar una fecha y hora dentro del horario de atención (8 a 18)
-•   Debo de poder solo agendar 1 solo turno por dia
-•	Para agendar un turno en la veterinaria.
-<!-- 5. Cancelar un Turno -->
-•	Como usuario autenticado
-•	Quiero cancelar un turno previamente agendado
-•	Para liberar ese espacio y no afectar la planificación de la veterinaria.
-<!-- 6. Recibir Confirmación por Email --> (extra)
-•	Como usuario
-•	Quiero recibir un email de confirmación al reservar o cancelar un turno
-•	Para tener una notificación y registro de mis acciones.
-<!-- 7. Subir Foto de Perfil --> (extra)
-•	Como usuario autenticado
-•	Quiero subir una foto de perfil a mi cuenta
-•	Para personalizar mi perfil en la aplicación.
-<!-- 8. Ver Mis Turnos -->
-•	Como usuario autenticado
-•	Quiero ver una lista de mis turnos agendados
-•	Para tener un registro de mis próximas citas en la veterinaria.
-<!-- 9. Cerrar Sesión --> (extra)
-•	Como usuario autenticado
-•	Quiero poder cerrar mi cuenta para iniciar secion o volverme a registrar
+<!-- 1. Registro y Autenticación de Usuario --> 1. Registro y Autenticación de Usuario
+-	Como usuario
+-	Quiero registrarme en la aplicación proporcionando mis datos básicos (nombre, correo electrónico, contraseña)
+-	Para poder autenticarme y acceder a las funciones de agendamiento de turnos.
+<!-- 2. Iniciar Sesión --> 2. Iniciar Sesión
+-	Como usuario registrado
+-	Quiero iniciar sesión con mi correo electrónico y contraseña
+-	Para acceder a mi cuenta y gestionar mis turnos.
+<!-- 3. Recuperación de Contraseña --> 3. Recuperación de Contraseña (extra)
+-	Como usuario registrado
+-	Quiero recuperar mi contraseña en caso de haberla olvidado
+-	Para poder acceder nuevamente a mi cuenta.
+<!-- 4. Agendar un Turno --> 4. Agendar un Turno
+-	Como usuario autenticado
+-	Quiero seleccionar una fecha y hora dentro del horario de atención (8 a 18)
+-   Debo de poder solo agendar 1 solo turno por dia
+-	Para agendar un turno en la veterinaria.
+<!-- 5. Cancelar un Turno --> 5. Cancelar un Turno
+-	Como usuario autenticado
+-	Quiero cancelar un turno previamente agendado
+-	Para liberar ese espacio y no afectar la planificación de la veterinaria.
+<!-- 6. Recibir Confirmación por Email --> 6. Recibir Confirmación por Email (extra) 
+-	Como usuario
+-	Quiero recibir un email de confirmación al reservar o cancelar un turno
+-	Para tener una notificación y registro de mis acciones.
+<!-- 7. Subir Foto de Perfil --> 7. Subir Foto de Perfil (extra)
+-	Como usuario autenticado
+-	Quiero subir una foto de perfil a mi cuenta
+-	Para personalizar mi perfil en la aplicación.
+<!-- 8. Ver Mis Turnos --> 8. Ver Mis Turnos
+-	Como usuario autenticado
+-	Quiero ver una lista de mis turnos agendados
+-	Para tener un registro de mis próximas citas en la veterinaria.
+<!-- 9. Cerrar Sesión --> 9. Cerrar Sesión (extra) 
+-	Como usuario autenticado
+-	Quiero poder cerrar mi cuenta para iniciar secion o volverme a registrar
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 ## Esquema Inicial de la Base de Datos
 # Entidades y Relaciones
 1.	# Usuario
-•	ID (clave primaria, number, incrementacion automatica)
-•	Nombre (String)
-•	Correo Electrónico (String)
-•	Foto de Perfil (String, URL) // Extra
+-	ID (clave primaria, number, incrementacion automatica)
+-	Nombre (String)
+-	Correo Electrónico (String)
+-	Foto de Perfil (String, URL) // Extra
 2.	# Credenciales
-•	ID (clave primaria, number, incrementacion automatica)
-•	UsuarioID (Clave Foranea, Number)
-•   Contraseña (String)
+-	ID (clave primaria, number, incrementacion automatica)
+-	UsuarioID (Clave Foranea, Number)
+-   Contraseña (String)
 3.	# Turno
-•	ID (clave primaria, number, incrementacion automatica)
-•	UsuarioID (Clave Foranea, Number)
-•	Fecha (Date)
-•	Hora (Time)
-•	Estado (String) // Ejemplo: "Reservado", "Cancelado"
+-	ID (clave primaria, number, incrementacion automatica)
+-	UsuarioID (Clave Foranea, Number)
+-	Fecha (Date)
+-	Hora (Time)
+-	Estado (String) // Ejemplo: "Reservado", "Cancelado"
 4.	# EmailConfirmacion // Extra
-•	ID (Clave primaria, number, incrementacion automatica)
-•	UsuarioID (Clave foranea, number)
-•	Tipo (String) // Ejemplo: "Reserva", "Cancelación"
-•	FechaEnvio (DateTime)
-<!-- Relaciones -->
-•	Un Usuario puede tener múltiples Turnos (Relación 1 a Muchos).
-•	Un Turno pertenece a un Usuario (Relación Muchos a 1).
-•	Un Usuario debe tener una Credencial (Relación 1 a 1).
-•	Una Credencial pertenece a un Usuario (Relación 1 a 1).
-•	Un Usuario puede tener múltiples EmailConfirmacion (Relación 1 a Muchos). //Extra
-•	Un EmailConfirmacion pertenece a un Usuario (Relación Muchos a 1). // Extra
+-	ID (Clave primaria, number, incrementacion automatica)
+-	UsuarioID (Clave foranea, number)
+-	Tipo (String) // Ejemplo: "Reserva", "Cancelación"
+-	FechaEnvio (DateTime)
+<!-- Relaciones --> Relaciones <!-- Relaciones -->
+-   Un Usuario puede tener múltiples Turnos (Relación 1 a Muchos).
+-	Un Turno pertenece a un Usuario (Relación Muchos a 1).
+-	Un Usuario debe tener una Credencial (Relación 1 a 1).
+-	Una Credencial pertenece a un Usuario (Relación 1 a 1).
+-	Un Usuario puede tener múltiples EmailConfirmacion (Relación 1 a Muchos). //Extra
+-	Un EmailConfirmacion pertenece a un Usuario (Relación Muchos a 1). // Extra
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
