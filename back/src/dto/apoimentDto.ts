@@ -1,8 +1,8 @@
-interface TurnoDto{
-    fecha: string,
-    hora: string,
-    active: boolean
-}
-
-
-export default TurnoDto
+interface TurnoDto {
+    fecha: Date;
+    time: string;
+    status: boolean;
+    usuarioId: number;
+  }
+  
+  export default TurnoDto;

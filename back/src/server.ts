@@ -1,13 +1,12 @@
 import express from "express";
-require ("dotenv").config()
+require("dotenv").config();
 import router from "./routes/index";
 import morgan from "morgan";
 
 const server = express();
 
-server.use(router)
-server.use(express.json())
-server.use(morgan("dev"))
+server.use(express.json());
+server.use(morgan("dev"));
+server.use(router);
 
-
-export default server
+export default server;

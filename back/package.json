@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && nodemon ./dist/index.js",
     "build": "tsc",
-    "dev": "tsc --watch",
+    "dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "serve": "nodemon ./dist/index.js"
   },
@@ -24,6 +24,9 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.5",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   }
 }

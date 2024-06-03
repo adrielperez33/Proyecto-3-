@@ -1,1 +1,9 @@
-"PORT = 3000"
+"PORT = puerto"
+# Aca coloco la configuracion de mi data-source
+"DB_HOST=host"
+"DB_PORT=puerto"
+"DB_USER = user"
+"DB_PASSWORD = contraseña"
+"DB_NAME = nombre de la base de datos"
+
+(las comillas no estan el el .env real)

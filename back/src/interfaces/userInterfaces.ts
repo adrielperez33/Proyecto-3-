@@ -1,11 +1,14 @@
-import Iturno from "./apoimentInterfaces"
+import Credential from "../entities/CredentialEntity";
+import Turnos from "../entities/TurnosEntitiy"
 
-interface IUsuario{
-    Id: number,
+interface IUsuario {
+    idUser: number,
     nombre: string,
     email: string,
-    turno: Iturno
+    birthdate: Date,
+    nDni: string,
+    credentialsId: number,
+    turnos: Turnos[]
 }
 
-
-export default IUsuario
+export default IUsuario;

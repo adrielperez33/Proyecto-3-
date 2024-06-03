@@ -1,8 +1,11 @@
+import Usuario from './../entities/UserEntiity';
+
 interface Iturno{
-    Id: number,
-    fecha: string,
-    hora: string,
-    active: boolean
+    IdTurnos: number,
+    fecha: Date,
+    time: string,
+    status: boolean,
+    usuario: Usuario
 }
 
 
