@@ -1,14 +1,11 @@
 .title {
-    font-size: 2rem;
-    text-align: center;
-    margin: 2rem 0;
-    color: #333;
-  }
-  
-  .turnosContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.turnosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
