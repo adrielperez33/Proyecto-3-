@@ -39,3 +39,16 @@
   margin: 0.3rem 0;
   color: #777;
 }
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.cancelButton:hover {
+  background-color: #d32f2f;
+}
