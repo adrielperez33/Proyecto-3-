@@ -49,7 +49,6 @@ const RegisterForm = () => {
       return;
     }
 
-    // Validar que la fecha de nacimiento no sea posterior al día actual
     const today = new Date();
     const birthdate = new Date(formData.birthdate);
     if (birthdate > today) {
@@ -57,13 +56,11 @@ const RegisterForm = () => {
       return;
     }
 
-    // Calcular la edad basada en la fecha de nacimiento
     const age = calculateAge(birthdate);
     if (age < 18) {
       alert('Para solicitar un turno, debe ir acompañado de un mayor de edad.');
     }
 
-    // Verificar disponibilidad del nombre de usuario
     const usernameAvailable = await checkUsernameAvailability(formData.username);
 
     if (!usernameAvailable) {
@@ -85,7 +82,7 @@ const RegisterForm = () => {
           birthdate: '',
           nDni: '',
         });
-        navigate("/login"); // Redirigir al usuario al login después del registro exitoso
+        navigate("/login");
       } else {
         alert('Error al registrar el usuario.');
       }
@@ -159,7 +156,7 @@ const RegisterForm = () => {
             name="birthdate"
             value={formData.birthdate}
             onChange={handleChange}
-            max={new Date().toISOString().split('T')[0]} // Establecer el límite máximo como el día actual
+            max={new Date().toISOString().split('T')[0]} 
           />
         </label>
       </div>
