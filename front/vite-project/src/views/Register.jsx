@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/reducer';
 import styles from '../Styles/Forms.module.css';
+import checkUsernameAvailability from '../middleware/usernameAvailability';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -29,7 +30,14 @@ const RegisterForm = () => {
   };
 
   const validateForm = () => {
-    return formData.username && formData.password && formData.nombre && formData.email && formData.birthdate && formData.nDni;
+    return (
+      formData.username &&
+      formData.password &&
+      formData.nombre &&
+      formData.email &&
+      formData.birthdate &&
+      formData.nDni
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -41,12 +49,34 @@ const RegisterForm = () => {
       return;
     }
 
+    // Validar que la fecha de nacimiento no sea posterior al día actual
+    const today = new Date();
+    const birthdate = new Date(formData.birthdate);
+    if (birthdate > today) {
+      setError('La fecha de nacimiento no puede ser posterior al día actual.');
+      return;
+    }
+
+    // Calcular la edad basada en la fecha de nacimiento
+    const age = calculateAge(birthdate);
+    if (age < 18) {
+      alert('Para solicitar un turno, debe ir acompañado de un mayor de edad.');
+    }
+
+    // Verificar disponibilidad del nombre de usuario
+    const usernameAvailable = await checkUsernameAvailability(formData.username);
+
+    if (!usernameAvailable) {
+      setError('El nombre de usuario ya está en uso. Por favor, elija otro o inicie sesión si ya está registrado.');
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:3001/users/register', formData);
       if (response.status === 201) {
         const { user } = response.data;
         alert('Registro exitoso.');
-        dispatch(setUser(user)); 
+        dispatch(setUser(user));
         setFormData({
           username: '',
           password: '',
@@ -55,7 +85,7 @@ const RegisterForm = () => {
           birthdate: '',
           nDni: '',
         });
-        navigate("/login"); 
+        navigate("/login"); // Redirigir al usuario al login después del registro exitoso
       } else {
         alert('Error al registrar el usuario.');
       }
@@ -66,6 +96,12 @@ const RegisterForm = () => {
         setError('Ocurrió un error al registrar el usuario.');
       }
     }
+  };
+
+  const calculateAge = (birthdate) => {
+    const ageDiffMs = Date.now() - birthdate.getTime();
+    const ageDate = new Date(ageDiffMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
   return (
@@ -123,6 +159,7 @@ const RegisterForm = () => {
             name="birthdate"
             value={formData.birthdate}
             onChange={handleChange}
+            max={new Date().toISOString().split('T')[0]} // Establecer el límite máximo como el día actual
           />
         </label>
       </div>

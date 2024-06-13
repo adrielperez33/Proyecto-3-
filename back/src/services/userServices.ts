@@ -18,6 +18,7 @@ export const getAllUserServices = async () => {
   return users.map(user => ({
     idUser: user.idUser,
     nombre: user.nombre,
+    username: user.credentials.username, 
     email: user.email,
     birthdate: user.birthdate,
     nDni: user.nDni,

@@ -23,7 +23,7 @@ const MisTurnos = () => {
         .catch((err) => setError(err.message)); 
     } else {
       setError("Usuario no logueado. Debes iniciar sesión para ver tus turnos.");
-      navigate("/login");
+      navigate("/Home");
     }
   }, [user, navigate]);
 
@@ -50,7 +50,7 @@ const MisTurnos = () => {
               <Turno key={turno.IdTurnos} {...turno} />
             ))
           ) : (
-            <p>No hay turnos disponibles.</p>
+            <p className={style.title}>No hay turnos disponibles.</p>
           )}
         </div>
       )}

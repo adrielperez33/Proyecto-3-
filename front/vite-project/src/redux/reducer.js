@@ -1,7 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedUser = localStorage.getItem('user');
+let parsedUser = null;
+try {
+  parsedUser = savedUser ? JSON.parse(savedUser) : null;
+} catch (error) {
+  console.error('Error al parsear usuario guardado en localStorage:', error);
+}
+
 const initialState = {
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  user: parsedUser,
   userAppointments: [],
 };
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import style from "../Styles/CrearTurno.module.css";
 
 const CrearTurno = () => {
-  const user = useSelector((state) => state.user.user); 
+  const user = useSelector((state) => state.user.user);
   const [formData, setFormData] = useState({
     fecha: "",
     hora: "",
@@ -29,22 +29,22 @@ const CrearTurno = () => {
 
       const { fecha, hora } = formData;
       const turnoData = {
-        fecha: new Date(fecha).toISOString(), 
+        fecha: new Date(fecha).toISOString(),
         time: hora,
-        status: true, 
-        usuarioId: user.idUser, 
+        status: true,
+        usuarioId: user.idUser,
       };
 
       const response = await axios.post("http://localhost:3001/appointment/schedule", turnoData);
 
       if (response.status === 201) {
         setSuccessMessage("¡Turno creado correctamente!");
-        alert("¡Turno creado correctamente!")
+        alert("¡Turno creado correctamente!");
         setFormData({
           fecha: "",
           hora: "",
         });
-        window.location.reload(); 
+        window.location.reload();
       } else {
         throw new Error("Error al crear el turno");
       }
@@ -57,6 +57,14 @@ const CrearTurno = () => {
     }
   };
 
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <div className={style.container}>
       <form onSubmit={handleSubmit} className={style.form}>
@@ -67,6 +75,7 @@ const CrearTurno = () => {
           name="fecha"
           value={formData.fecha}
           onChange={handleChange}
+          min={getTodayDate()}
           required
         />
         <label htmlFor="hora">Hora:</label>
