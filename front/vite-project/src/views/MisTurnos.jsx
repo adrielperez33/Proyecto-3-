@@ -35,7 +35,7 @@ const MisTurnos = () => {
     <>
       <h1 className={style.title}>Mis Turnos</h1>
       <p className={style.title}>
-        Aclaración: es importante que los turnos se soliciten <br/> en un horario posible (de 8 am a 18 pm)
+        Aclaración: es importante que los turnos se soliciten <br/> en horario de atención (de 8 am a 18 pm)
       </p>
       <button onClick={toggleForm} className={style.toggleFormButton}>
         {showForm ? "Cancelar Crear Turno" : "Crear Nuevo Turno"}
